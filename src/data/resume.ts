@@ -95,7 +95,9 @@ export const projects = [
     images: [bcswapImg],
     framed: true,
     accent: '#7c5cff',
-    links: undefined as { android?: string; ios?: string } | undefined,
+    links: {
+      android: 'https://play.google.com/store/apps/details?id=com.pnsoftware.uniswap&hl=en_IN',
+    } as { android?: string; ios?: string } | undefined,
   },
   {
     id: 'oxifleet',
@@ -123,7 +125,7 @@ export const projects = [
     framed: true,
     accent: '#ff5c7c',
     links: {
-      android: 'https://play.google.com/store/search?q=zefyron&c=apps&hl=en_IN',
+      android: 'https://play.google.com/store/apps/details?id=app.mobile.zefyron&hl=en_IN',
       ios: 'https://apps.apple.com/us/app/zefyron/id6463197517',
     },
   },
