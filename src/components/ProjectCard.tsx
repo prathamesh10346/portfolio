@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import type { CSSProperties, MouseEvent } from 'react'
 import type { projects } from '../data/resume'
 
@@ -6,6 +6,7 @@ type Project = (typeof projects)[number]
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(0)
 
   function handleMove(event: MouseEvent<HTMLDivElement>) {
     const card = cardRef.current
@@ -27,6 +28,11 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   }
 
   const reversed = index % 2 === 1
+  const hasMultiple = project.images.length > 1
+
+  function step(delta: number) {
+    setActive((current) => (current + delta + project.images.length) % project.images.length)
+  }
 
   return (
     <article
@@ -41,9 +47,50 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         data-cursor-hover
       >
         <div className="project-glow" />
-        <div className="project-phone">
-          <img src={project.image} alt={`${project.name} app screenshot`} loading="lazy" />
+        <div className={project.framed ? 'project-shot project-shot-framed' : 'project-shot'}>
+          <img src={project.images[active]} alt={`${project.name} app screenshot ${active + 1}`} loading="lazy" />
         </div>
+
+        {hasMultiple && (
+          <>
+            <button
+              type="button"
+              className="project-nav project-nav-prev"
+              aria-label="Previous screenshot"
+              onClick={(e) => {
+                e.stopPropagation()
+                step(-1)
+              }}
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              className="project-nav project-nav-next"
+              aria-label="Next screenshot"
+              onClick={(e) => {
+                e.stopPropagation()
+                step(1)
+              }}
+            >
+              ›
+            </button>
+            <div className="project-dots">
+              {project.images.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={i === active ? 'project-dot project-dot-active' : 'project-dot'}
+                  aria-label={`Show screenshot ${i + 1}`}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setActive(i)
+                  }}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <div className="project-copy">
@@ -56,6 +103,20 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             <li key={tech}>{tech}</li>
           ))}
         </ul>
+        {project.links && (
+          <div className="project-links">
+            {project.links.android && (
+              <a href={project.links.android} target="_blank" rel="noreferrer" data-cursor-hover>
+                Play Store
+              </a>
+            )}
+            {project.links.ios && (
+              <a href={project.links.ios} target="_blank" rel="noreferrer" data-cursor-hover>
+                App Store
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </article>
   )

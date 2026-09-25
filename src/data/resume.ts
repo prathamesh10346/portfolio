@@ -1,5 +1,10 @@
 import bcswapImg from '../assets/images/project-bcswap.webp'
-import oxifleetImg from '../assets/images/project-oxifleet.webp'
+import oxifleetOnboardingImg from '../assets/images/project-oxifleet.webp'
+import oxifleetVehiclesImg from '../assets/images/oxifleet-vehicles.webp'
+import oxifleetDashboardImg from '../assets/images/oxifleet-dashboard.webp'
+import zefyronExploreImg from '../assets/images/zefyron-explore.webp'
+import zefyronDashboardImg from '../assets/images/zefyron-dashboard.webp'
+import zefyronProfileImg from '../assets/images/zefyron-profile.webp'
 
 export const profile = {
   name: 'Prathmesh Tangade',
@@ -87,8 +92,10 @@ export const projects = [
     description:
       'Core wallet, swap, and blockchain integration for a multi-chain crypto wallet supporting Ethereum, Bitcoin, Solana, and Tron from a single seed phrase. Engineered a unified multi-chain wallet service handling HD key derivation and address generation across all four chains, with in-app token swapping, cross-chain bridging, staking, and real-time price/transaction updates over Socket.IO.',
     stack: ['Flutter', 'web3dart', 'Hive', 'Firebase', 'Socket.IO'],
-    image: bcswapImg,
+    images: [bcswapImg],
+    framed: true,
     accent: '#7c5cff',
+    links: undefined as { android?: string; ios?: string } | undefined,
   },
   {
     id: 'oxifleet',
@@ -97,8 +104,28 @@ export const projects = [
     description:
       'Cross-platform (iOS/Android) fleet management app for drivers with a feature-based modular architecture covering vehicle tracking, bookings, service requests, and documents. Real-time driver-fleet communication over Socket.IO, live vehicle/booking tracking with Google Maps and Geolocator, biometric auth, and Firebase push notifications.',
     stack: ['Flutter', 'Provider', 'Socket.IO', 'FCM', 'Google Maps', 'Geolocator'],
-    image: oxifleetImg,
+    images: [oxifleetOnboardingImg, oxifleetVehiclesImg, oxifleetDashboardImg],
+    framed: false,
     accent: '#2fd4c7',
+    links: {
+      android: 'https://play.google.com/store/apps/details?id=com.oxifleet.driver&hl=en_IN',
+      ios: 'https://apps.apple.com/us/app/oxifleet/id6788288763',
+    },
+  },
+  {
+    id: 'zefyron',
+    name: 'Zefyron',
+    tagline: 'Startup ↔ Investor Networking Platform',
+    description:
+      'A discovery and dealmaking platform connecting startups with investors and investment companies. Built a searchable, filterable directory of thousands of startups with rich company profiles (founders, funding sought, audience, traction), plus a founder dashboard bundling tools for investor discovery, deal flow, business valuation, and pitch-deck building.',
+    stack: ['Flutter', 'REST APIs', 'Firebase'],
+    images: [zefyronExploreImg, zefyronDashboardImg, zefyronProfileImg],
+    framed: true,
+    accent: '#ff5c7c',
+    links: {
+      android: 'https://play.google.com/store/search?q=zefyron&c=apps&hl=en_IN',
+      ios: 'https://apps.apple.com/us/app/zefyron/id6463197517',
+    },
   },
 ]
 
