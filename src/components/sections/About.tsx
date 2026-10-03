@@ -1,33 +1,60 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { profile, stats, education } from '../../data/resume'
 import { StatCounter } from '../StatCounter'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export function About() {
+  const textRef = useRef<HTMLParagraphElement>(null)
+
+  // words light up one by one as the paragraph scrolls through the viewport
+  useEffect(() => {
+    const el = textRef.current
+    if (!el) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el.querySelectorAll('.word'),
+        { opacity: 0.14 },
+        {
+          opacity: 1,
+          stagger: 0.12,
+          ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top 80%', end: 'bottom 55%', scrub: true },
+        },
+      )
+    })
+    return () => ctx.revert()
+  }, [])
+
   return (
     <section id="about" className="section about">
-      <div className="section-inner">
-        <div className="about-grid" data-reveal-group>
-          <div className="about-copy reveal">
-            <span className="eyebrow">About</span>
-            <h2>
-              Two years deep in Flutter, fintech rails, and on-chain plumbing.
-            </h2>
-            <p className="about-text">{profile.summary}</p>
-            <div className="about-edu glass">
-              <p className="about-edu-degree">{education.degree}</p>
-              <p className="about-edu-school">{education.school}</p>
-              <span className="about-edu-period">{education.period}</span>
-            </div>
-          </div>
+      <span className="section-label mono">(02) About</span>
 
-          <div className="about-stats">
-            {stats.map((stat) => (
-              <div className="stat-card glass reveal" key={stat.label}>
-                <StatCounter value={stat.value} suffix={stat.suffix} />
-                <span className="stat-label">{stat.label}</span>
-              </div>
-            ))}
+      <p className="about-statement" ref={textRef}>
+        {profile.summary.split(' ').map((w, i) => (
+          <span className="word" key={i}>
+            {w}{' '}
+          </span>
+        ))}
+      </p>
+
+      <div className="stats" data-reveal-group>
+        {stats.map((stat) => (
+          <div className="stat reveal" key={stat.label}>
+            <StatCounter value={stat.value} suffix={stat.suffix} />
+            <span className="stat-label mono">{stat.label}</span>
           </div>
-        </div>
+        ))}
+      </div>
+
+      <div className="about-edu reveal">
+        <span className="mono">Education</span>
+        <p>{education.degree}</p>
+        <p className="about-edu-meta mono">
+          {education.school} · {education.period}
+        </p>
       </div>
     </section>
   )

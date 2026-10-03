@@ -8,22 +8,32 @@ const LINKS = [
   { id: 'skills', label: 'Skills' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Work' },
+  { id: 'terminal', label: 'Terminal' },
   { id: 'contact', label: 'Contact' },
 ]
+
+function useClock() {
+  const [time, setTime] = useState('')
+  useEffect(() => {
+    const fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' })
+    const update = () => setTime(fmt.format(new Date()))
+    update()
+    const id = window.setInterval(update, 15000)
+    return () => window.clearInterval(id)
+  }, [])
+  return time
+}
 
 export function Nav() {
   const [active, setActive] = useState('hero')
   const [open, setOpen] = useState(false)
   const progressRef = useRef<HTMLDivElement>(null)
+  const time = useClock()
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]')
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id)
-        })
-      },
+      (entries) => entries.forEach((entry) => entry.isIntersecting && setActive(entry.target.id)),
       { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
     )
     sections.forEach((section) => observer.observe(section))
@@ -32,57 +42,49 @@ export function Nav() {
 
   useEffect(() => {
     let rafId: number
-    function update() {
-      if (progressRef.current) {
-        progressRef.current.style.transform = `scaleX(${scrollState.progress})`
-      }
+    const update = () => {
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${scrollState.progress})`
       rafId = requestAnimationFrame(update)
     }
     rafId = requestAnimationFrame(update)
     return () => cancelAnimationFrame(rafId)
   }, [])
 
-  function handleNavigate(id: string) {
+  function go(id: string) {
     setOpen(false)
     scrollToId(id)
   }
 
   return (
-    <header className="nav">
-      <div className="nav-progress-track">
-        <div ref={progressRef} className="nav-progress-fill" />
-      </div>
+    <header className={`nav${open ? ' nav-open' : ''}`}>
+      <div ref={progressRef} className="nav-progress" />
       <div className="nav-inner">
-        <a href="#hero" className="nav-brand" onClick={(e) => { e.preventDefault(); handleNavigate('hero') }}>
-          <span className="nav-brand-mark">PT</span>
-          <span className="nav-brand-name">{profile.name.split(' ')[0]}</span>
+        <a href="#hero" className="nav-brand" onClick={(e) => { e.preventDefault(); go('hero') }} data-cursor-hover>
+          PT<sup>®</sup>
         </a>
 
-        <nav className={`nav-links${open ? ' nav-links-open' : ''}`}>
-          {LINKS.map((link) => (
+        <span className="nav-clock mono">
+          <i className="live-dot" /> Pune {time} IST
+        </span>
+
+        <nav className="nav-links">
+          {LINKS.map((link, i) => (
             <a
               key={link.id}
               href={`#${link.id}`}
               className={active === link.id ? 'nav-link nav-link-active' : 'nav-link'}
-              onClick={(e) => {
-                e.preventDefault()
-                handleNavigate(link.id)
-              }}
+              onClick={(e) => { e.preventDefault(); go(link.id) }}
+              data-cursor-hover
             >
-              {link.label}
+              <span className="nav-link-num">0{i + 1}</span> {link.label}
             </a>
           ))}
+          <a href={profile.resumeUrl} download className="nav-resume" data-cursor-hover>
+            Résumé ↓
+          </a>
         </nav>
 
-        <a href={profile.resumeUrl} download className="btn btn-primary nav-cta" data-cursor-hover>
-          Resume
-        </a>
-
-        <button
-          className={`nav-burger${open ? ' nav-burger-open' : ''}`}
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
+        <button className="nav-burger" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" aria-expanded={open}>
           <span />
           <span />
         </button>

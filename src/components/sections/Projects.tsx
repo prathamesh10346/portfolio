@@ -4,17 +4,13 @@ import { ProjectCard } from '../ProjectCard'
 export function Projects() {
   return (
     <section id="projects" className="section projects">
-      <div className="section-inner">
-        <div className="section-head">
-          <span className="eyebrow">Selected Work</span>
-          <h2>Fintech and blockchain apps, shipped end to end.</h2>
-        </div>
+      <span className="section-label mono">(05) Selected work</span>
+      <h2 className="section-title">Fintech &amp; blockchain apps, shipped end to end.</h2>
 
-        <div className="project-list" data-reveal-group>
-          {projects.map((project, index) => (
-            <ProjectCard project={project} index={index} key={project.id} />
-          ))}
-        </div>
+      <div className="project-stack-wrap">
+        {projects.map((project, index) => (
+          <ProjectCard project={project} index={index} key={project.id} />
+        ))}
       </div>
     </section>
   )

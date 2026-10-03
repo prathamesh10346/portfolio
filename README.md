@@ -11,11 +11,11 @@ A single-page, animation-driven portfolio built with React, Three.js and GSAP. T
 
 ## Structure
 
-- `src/components/canvas/` — the WebGL scene (distorted blob, particle field, camera rig)
-- `src/components/sections/` — page sections (Hero, About, Skills, Experience, Projects, Contact)
+- `src/components/canvas/` — the WebGL scene (liquid-chrome blob that glides between sections, studio environment)
+- `src/components/sections/` — page sections (Hero, Marquees, About, Skills, Experience, Projects, Terminal, Contact)
 - `src/data/resume.ts` — all copy/content, sourced from the resume
 - `src/lib/scrollState.ts` — a mutable, rAF-friendly scroll/pointer state shared with the 3D scene (avoids re-rendering React on every scroll tick)
-- `src/hooks/` — `useLenis` (smooth scroll + GSAP sync), `useScrollReveal` (section reveal animations), `usePointerTracking`
+- `src/hooks/` — `useLenis` (smooth scroll + GSAP sync), `useScrollReveal` (section reveal animations), `usePointerTracking`, `useInteractions` (magnetic buttons, click pulse, label scramble)
 
 ## Development
 

@@ -32,7 +32,7 @@ export function Loader({ onDone }: LoaderProps) {
 
   return (
     <div className={`loader${hidden ? ' loader-hidden' : ''}`}>
-      <div className="loader-mark">PT</div>
+      <div className="loader-mark">PRATHMESH TANGADE — PORTFOLIO ®2026</div>
       <div className="loader-bar">
         <div className="loader-bar-fill" style={{ width: `${progress}%` }} />
       </div>
