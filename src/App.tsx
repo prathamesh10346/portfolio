@@ -13,6 +13,7 @@ import { ThemeDock } from './components/ThemeDock'
 import { useInteractions } from './hooks/useInteractions'
 import { initTheme } from './lib/theme'
 import { Projects } from './components/sections/Projects'
+import { Freelance } from './components/sections/Freelance'
 import { Contact } from './components/sections/Contact'
 import { useLenis } from './hooks/useLenis'
 import { usePointerTracking } from './hooks/usePointerTracking'
@@ -42,6 +43,7 @@ function App() {
         <Skills />
         <Experience />
         <Projects />
+        <Freelance />
         <Terminal />
         <Contact />
       </main>

@@ -907,6 +907,9 @@ button {
   width: 100%;
   height: auto;
 }
+.fl + .fl {
+  margin-top: 2rem;
+}
 .project-shots:hover .shot {
   transform: translateX(calc(var(--offset) * 22px)) translateY(calc(var(--offset) * var(--offset) * 6px - 10px))
     rotate(calc(var(--offset) * 4deg));
@@ -916,6 +919,113 @@ button {
 }
 .project-shots[style*='--c: 1'] .shot {
   width: 46%;
+}
+
+/* ---------- Freelance ---------- */
+.fl-list {
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+.fl {
+  padding: clamp(1.4rem, 3vw, 2.6rem);
+  border: 2px solid var(--ink);
+  background: rgba(10, 10, 10, 0.6);
+}
+.fl-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--accent);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+.fl-title {
+  margin-top: 1.6rem;
+  font-size: clamp(2rem, 5vw, 4.4rem);
+  font-weight: 800;
+  font-variation-settings: 'wdth' 75;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.fl-client {
+  margin-top: 0.7rem;
+  color: var(--dim);
+  font-size: 0.8rem;
+}
+.fl-summary {
+  max-width: 62ch;
+  margin-top: 1.2rem;
+  line-height: 1.6;
+}
+.fl-owned-label {
+  margin-top: 2.2rem;
+  color: var(--dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+.fl-owned {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  margin-top: 0.8rem;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+.fl-owned li {
+  padding: 1.1rem;
+  background: var(--bg);
+}
+.fl-num {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+}
+.fl-owned strong {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+}
+.fl-owned p {
+  margin-top: 0.5rem;
+  color: var(--dim);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.fl-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+.fl-flow li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.fl-flow li:not(:last-child)::after {
+  content: '→';
+  color: var(--accent);
+}
+.fl-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.4rem;
+}
+.fl-stack li {
+  padding: 0.3rem 0.7rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.7rem;
+}
+.fl-note {
+  margin-top: 1.4rem;
+  color: var(--dim);
+  font-size: 0.7rem;
 }
 
 /* ---------- Terminal ---------- */

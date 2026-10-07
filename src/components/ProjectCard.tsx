@@ -6,7 +6,7 @@ type Project = (typeof projects)[number]
 const SURFACES = ['#f2efe6', 'var(--accent)', '#ff5a2c']
 
 // Sticky card: as the next one slides over it, the stack builds up like a deck.
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
+export function ProjectCard({ project, index, total }: { project: Project; index: number; total: number }) {
   return (
     <article
       className="project"
@@ -14,7 +14,9 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
     >
       <div className="project-copy">
         <div className="project-top mono">
-          <span>0{index + 1} / 03</span>
+          <span>
+            0{index + 1} / 0{total}
+          </span>
           <span>{project.stack.slice(0, 2).join(' · ')}</span>
         </div>
         <h3 className="project-name">{project.name}</h3>
