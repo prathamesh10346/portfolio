@@ -3,7 +3,7 @@ import { certifications, profile } from '../../data/resume'
 export function Contact() {
   return (
     <section id="contact" className="section contact">
-      <span className="section-label mono">(07) Contact</span>
+      <span className="section-label mono">(08) Contact</span>
 
       <h2 className="contact-title" data-cursor-hover>
         <span>Let&rsquo;s build</span>

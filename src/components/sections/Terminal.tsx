@@ -18,7 +18,7 @@ const HELP = [
   'education         degree & certs',
   'contact           how to reach me',
   `theme <name>      ${themes.map((t) => t.id).join(' | ')}`,
-  'goto <section>    about | skills | experience | projects | contact',
+  'goto <section>    about | skills | experience | projects | freelance | contact',
   'clear             clear the screen',
 ]
 
@@ -48,8 +48,8 @@ function run(input: string): string[] | 'clear' {
       return [`theme set to ${t.label}`]
     }
     case 'goto': {
-      const ok = ['about', 'skills', 'experience', 'projects', 'contact'].includes(args[0])
-      if (!ok) return ['usage: goto <about|skills|experience|projects|contact>']
+      const ok = ['about', 'skills', 'experience', 'projects', 'freelance', 'contact'].includes(args[0])
+      if (!ok) return ['usage: goto <about|skills|experience|projects|freelance|contact>']
       scrollToId(args[0])
       return [`scrolling to ${args[0]}…`]
     }
@@ -104,7 +104,7 @@ export function Terminal() {
 
   return (
     <section id="terminal" className="section terminal-section">
-      <span className="section-label mono">(06) Interactive</span>
+      <span className="section-label mono">(07) Interactive</span>
       <h2 className="section-title">Skip the scroll. Ask my terminal.</h2>
       <div>
 
