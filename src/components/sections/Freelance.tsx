@@ -41,6 +41,11 @@ export function Freelance() {
               ))}
             </ul>
             <p className="fl-note mono">{job.note}</p>
+            {'links' in job && job.links?.android && (
+              <a className="fl-link mono" href={job.links.android} target="_blank" rel="noreferrer" data-cursor-hover>
+                Google Play ↗
+              </a>
+            )}
           </article>
         ))}
       </div>

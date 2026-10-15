@@ -39,7 +39,7 @@ export const stats = [
 export const skillGroups = [
   {
     title: 'Languages',
-    skills: ['Dart', 'Kotlin', 'Java', 'JavaScript', 'SQL', 'PostgreSQL'],
+    skills: ['Dart', 'Kotlin', 'Java', 'JavaScript', 'TypeScript', 'SQL', 'PostgreSQL'],
   },
   {
     title: 'Mobile & Frontend',
@@ -47,7 +47,7 @@ export const skillGroups = [
   },
   {
     title: 'Backend, Cloud & Integrations',
-    skills: ['REST APIs', 'Dio', 'Firebase', 'Web3 Integration', 'TensorFlow Lite', 'Socket.IO', 'Payment Gateways'],
+    skills: ['REST APIs', 'Node.js & Express', 'Prisma', 'Supabase', 'Dio', 'Firebase', 'Web3 Integration', 'TensorFlow Lite', 'Socket.IO', 'Payment Gateways'],
   },
   {
     title: 'Tools & Practices',
@@ -275,5 +275,59 @@ export const freelance = [
     flow: ['Schedule', 'FCM reminder', 'Instruction dialog', 'Taken / skipped', 'Report'],
     stack: ['Flutter', 'Provider', 'Dio', 'FCM', 'flutter_tts', 'fl_chart'],
     note: 'Client name withheld. Source is private.',
+  },
+  {
+    id: 'civic-alert',
+    agency: 'Client project',
+    ownedLabel: 'What I built',
+    title: 'Civic Alert',
+    client: 'Community reporting & public alerts platform',
+    role: 'Freelance Full-Stack Developer (solo)',
+    summary:
+      'A full-stack platform I built solo, from the published Android app to the backend. Citizens report issues in their area with a description, location and photos, follow each report through review to resolution, and receive public alerts and events. The Node.js API handles auth, storage, moderation and push delivery.',
+    owned: [
+      {
+        name: 'OTP sign-up & login',
+        detail: 'Two-step phone verification, username or phone login, and JWT sessions with automatic refresh.',
+      },
+      {
+        name: 'Issue reporting',
+        detail: 'Create a report with title, description and map location, then attach up to five photos.',
+      },
+      {
+        name: 'Status tracking',
+        detail: 'Reports move from submitted to under review to resolved or rejected, with the admin’s note shown to the user.',
+      },
+      {
+        name: 'Push updates',
+        detail: 'FCM notifications when a report’s status changes or a new public alert is published.',
+      },
+      {
+        name: 'Alerts & events feed',
+        detail: 'Public feed of alerts, events and news, filterable by district, with Marathi titles.',
+      },
+      {
+        name: 'Profile & identity',
+        detail: 'Profile, personal report stats and secure identity-document upload.',
+      },
+      {
+        name: 'Backend API',
+        detail: 'Express + TypeScript REST API on PostgreSQL via Prisma: JWT auth with refresh, validation, rate limiting and bcrypt.',
+      },
+      {
+        name: 'Admin & moderation API',
+        detail: 'Role-based admin routes to review reports, publish alerts, manage users, view dashboard stats and send targeted push.',
+      },
+      {
+        name: 'Storage & push',
+        detail: 'Supabase Storage for report photos (public) and identity documents (private), plus Firebase Admin FCM delivery.',
+      },
+    ],
+    flow: ['Flutter app', 'Express API', 'PostgreSQL + Storage', 'Admin review', 'FCM push'],
+    stack: ['Flutter', 'Node.js', 'Express', 'TypeScript', 'Prisma', 'PostgreSQL', 'Supabase', 'JWT', 'FCM'],
+    note: 'Client name withheld.',
+    links: {
+      android: 'https://play.google.com/store/apps/details?id=com.axinex.civicalert&hl=en_IN',
+    } as { android?: string } | undefined,
   },
 ]
